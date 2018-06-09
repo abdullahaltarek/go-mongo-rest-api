@@ -101,7 +101,7 @@ func main() {
 }
 
 func init() {
-	conn, err := mgo.Dial("127.0.0.1:27017")
+	conn, err := mgo.Dial("mongodb")
 	if err != nil {
 		panic(err.Error())
 		panic("Database connection error")
