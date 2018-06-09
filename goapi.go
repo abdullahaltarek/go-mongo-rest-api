@@ -2,10 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"net/http"
-	"fmt"
 )
 
 type Movie struct {
@@ -16,7 +16,6 @@ type Movie struct {
 }
 
 var db *mgo.Database
-
 
 func GetAllMovies(w http.ResponseWriter, r *http.Request) {
 	var movies []Movie
@@ -56,6 +55,7 @@ func UpdateMovie(w http.ResponseWriter, r *http.Request) {
 	}
 	JsonResponse(w, 200, map[string]string{"msg": "updated successfully"})
 }
+
 func CreateMovie(w http.ResponseWriter, r *http.Request) {
 	var movie Movie
 	movie.ID = bson.NewObjectId()
@@ -86,7 +86,6 @@ func JsonResponse(w http.ResponseWriter, code int, data interface{}) {
 	w.WriteHeader(code)
 	w.Write(response)
 }
-
 
 func main() {
 	r := http.NewServeMux()
